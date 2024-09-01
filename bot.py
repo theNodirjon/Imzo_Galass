@@ -1,5 +1,7 @@
 import logging
 import asyncio
+import sys
+
 from aiogram import Bot, Dispatcher, types, F
 from aiogram.filters import CommandStart
 from aiogram.types import ReplyKeyboardMarkup, KeyboardButton
@@ -122,4 +124,12 @@ async def main():
     await dp.start_polling(bot)
 
 if __name__ == "__main__":
+    logging.basicConfig(level=logging.INFO,
+                        format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+                        handlers=[
+                            logging.FileHandler('bot.log'),
+                            logging.StreamHandler(sys.stdout)
+                        ]
+                        )
+
     asyncio.run(main())
